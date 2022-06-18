@@ -2,7 +2,7 @@ pipeline {
 agent any tools { maven 'mymaven' } 
     stages { stage("Checkout") {
         steps {
-git url: 'https://github.com/akshu20791/simplilearnjavaproject.git'
+git url: 'https://github.com/prashantprusty/simple-java-maven-app.git'
 
         }    
     }
