@@ -24,7 +24,8 @@ pipeline {
         }
 		stage('package') {
             steps {
-                bat "mvn package" 
+                bat "mvn package"
+		archiveArtifacts "target/*.jar"
             }
         }
     }
