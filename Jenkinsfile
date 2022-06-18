@@ -1,27 +1,31 @@
-pipeline { agent any tools { maven 'Maven' } stages { stage("Checkout") {
-steps {
-git url: 'https://github.com/prashantprusty/simple-java-maven-app.git'
+pipeline {
+    agent any
 
-        }    
-    }
-    stage('compile') {
-        steps {
-        bat "mvn compile"       
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/prashantprusty/simple-java-maven-app.git'
+            }
+        }
+        stage('compile') {
+            steps {
+                bat "mvn compile"  
+            }
+        }
+        stage('review') {
+            steps {
+                bat "mvn pmd:pmd" 
+            }
+        }
+		stage('Unit test') {
+            steps {
+                bat "mvn test" 
+            }
+        }
+		stage('package') {
+            steps {
+                bat "mvn package" 
+            }
         }
     }
-    stage('review') {
-        steps {
-        bat "mvn pmd:pmd"       
-        }
-    }
-    stage("Unit test") {               
-        steps {       
-            bat "mvn test"               
-           }
-    }
-       stage("package") {               
-        steps {       
-            bat "mvn package"               
-           }
-       }
-} }
+}
