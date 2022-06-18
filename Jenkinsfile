@@ -1,8 +1,5 @@
-pipeline { 
-agent any tools { maven 'Maven' } 
-    stages {
-      stage("Checkout") {
-        steps {
+pipeline { agent any tools { maven 'Maven' } stages { stage("Checkout") {
+steps {
 git url: 'https://github.com/prashantprusty/simple-java-maven-app.git'
 
         }    
@@ -19,12 +16,12 @@ git url: 'https://github.com/prashantprusty/simple-java-maven-app.git'
     }
     stage("Unit test") {               
         steps {       
-        bat "mvn test"               
+            bat "mvn test"               
            }
     }
        stage("package") {               
         steps {       
-        bat "mvn package"               
+            bat "mvn package"               
            }
        }
 } }
