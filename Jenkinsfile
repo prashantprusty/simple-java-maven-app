@@ -1,33 +1,29 @@
-pipeline {
+pipeline { 
+agent any tools { maven 'mymaven' } 
+    stages { stage("Checkout") {
+        steps {
+git url: 'https://github.com/akshu20791/simplilearnjavaproject.git'
 
-    agent { label 'master' }
-
-    stages {
-
-        stage('build') {
-
-            steps {
-
-                echo "This is Build Stage "
-
-            }
-             stage('test') {
-
-            steps {
-
-                echo "This is Testing stage !"
-
-            }
-                  stage('deploy') {
-
-            steps {
-
-                echo "This is Deploy stage !"
-
-            }
-
-        }
-
+        }    
     }
-
-}
+    stage('compile') {
+        steps {
+        bat "mvn compile"       
+        }
+    }
+    stage('review') {
+        steps {
+        bat "mvn pmd:pmd"       
+        }
+    }
+    stage("Unit test") {               
+        steps {       
+            bat "mvn test"               
+           }
+    }
+       stage("package") {               
+        steps {       
+            bat "mvn package"               
+           }
+       }
+} }
