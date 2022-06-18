@@ -1,6 +1,7 @@
 pipeline { 
-agent any tools { maven 'mymaven' } 
-    stages { stage("Checkout") {
+agent any tools { maven 'Maven' } 
+    stages {
+      stage("Checkout") {
         steps {
 git url: 'https://github.com/prashantprusty/simple-java-maven-app.git'
 
